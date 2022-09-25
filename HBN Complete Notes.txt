@@ -1,0 +1,163 @@
+1.Persistence :  The process of storing 
+and managing data for a long period of
+time is Persistence.
+
+2.Persistence store : The Place where data
+will be saved on permanent basis is called
+Persistence Store
+
+3.Purpose of Persistance :The Data stored in Properties allocates memory in JVM of RAM and the memory will be vanished at end of app execution.
+
+4.Persistent Data : The data stored in
+Persistence Store.
+
+5.Persistence Operation : Operation
+performed on data which needs to be persisted in persistence store.
+	
+	These Operations are known as CURD/
+	SCUD/CRUD Operations.
+
+6.Persistence Technology/Framework/API :
+The Technology/Framework/API which we use to develop persistence logic to perform persistence operations on data which needs to be persisted in persistence store.
+
+Limitations of using files as persistence stores
+
+1.Cannot store huge amount of data.
+
+2.No Security.
+
+3.No SQL Support.
+
+4.No Constraints[Null/Primary , Foreign key] Support.
+
+5.Performing select operation with 
+multiple conditions is complex.
+
+6.Performing update and delete operation
+is complex.
+
+7.Cannot define relationship among files[Because No Support of Foreign Key].
+
+8.Data Merging and comparison is very
+complex.
+
+9.Cannot maintain Large Objects [files]
+as record values.
+
+All these limitations can be overcomed using RDBMS[Oracle,MySQL,PostgreSQL] DB s/w as persistence stores
+
+Note : ODB[Poet,Versant,etc] s/w is capable of storing objects as DB Table Records [Column Values]
+
+Limitations of ODB s/w
+----------------------
+
+1.Different ODB s/w support different programming language objects,hence portability
+is impossible.
+
+	Each S/W supports each programming language object
+
+2.Report Generation from ODB s/w is complex.
+
+3.Data Redundency Problem [We can store
+Multiple Objects with same data in DB Table of ODB s/w]
+
+4.They are Against Normalization Rules.
+
+	According to 1st rule,Every column value must hold a single value but we can
+store an object.
+
+	According to 2nd,3rd rules,we must provide relationship btwn tables of DB
+s/w which isn't possible between tables of
+ODB s/w.
+
+The Above Limitations of can be overcomed
+by using RDBMS s/w with support of o-r
+mapping persistence logic.
+
+With support of o-r mapping persistence
+logic,we don't store objects as column values but we store data in objects as
+column values.
+
+Limitations of Using JDBC Technology to Develop Persistence Logic
+
+1.SQL Queries needs to provided while giving Persistence Logic via JDBC Technology which is dependent for each RDBMS s/w.
+
+2.Because of the above reason,they are not
+portable.
+
+3.While providing values to SQL Queries,Java Objects cannot be directly given as column value.
+
+4.JDBC API throws SQLException[Checked Exception] in which developer needs to handle.
+
+5.SQLException is the exception which gets
+raised while writing JDBC Code,hence it is difficult to diagnose the exception.
+
+6.ResultSet Object in JDBC API isn't Serializable , hence we cannot transfer them over network.
+
+7.For All kinds of SELECT SQL Queries,we need to process ResultSet Object in different manner which is bit complex.
+
+8.JDBC API doesn't give Default Cache[Temporary Memory which holds Data for Temporary Period]Support b/w Java App and DB s/w.
+
+9.It Doesn't support dynamic schema generation [JDBC cannot generate db tables 
+dynamically].
+
+10.No Built in support for Record
+Versioning and Record TimeStamping
+
+Record Versioning - Keeps track of how
+many times the each record is modified
+
+Record Timestamping - keeps track of when
+the record is inserted and lastly 
+updated
+
+11.No Built in ID Generators to insert Primary key column directly.
+
+12.Since Web Application is developed using multiple layers,and if we handle SQLException[Checked Exception] via 'try/catch' block, hence the exception is suppressed in the layer and not propagated to the next layer,hence Problem[exception] Diagnosis is complex.So handle exceptions
+using 'throws' keyword which propagates the exception to next layer and Problem
+Diagnosis becomes easy.
+
+etc...
+
+Most of the Above Limitations can be overcomed by using O-R Mapping Persistence
+Logic using ORM Software like Hibernate.
+
+Qn : What is O-R Mapping ?
+
+Ans : Single Line Statement : The Process
+of mapping or linking java Class with DB Tables
+
+Definition : The Process of
+	1.Mapping java Class with DB Tables
+	2.Mapping Java Class Properties with
+	Columns of DB Tables
+	3.Providing Synchronization between
+	Java Class Objects and DB Table and 	vice-versa.
+
+Synchronization :  Modification done in Java Object will be reflected in DB Table and vice versa.
+
+Brief Summary to Develop Java Application
+with Hibernate support
+
+1.Prepare Java Bean Class which holds
+
+	a.O-R Mapping Persistence Logic
+
+	b.Persistable Data [To be Inserted/Updated/Deleted in DB Table]
+	and Persistent Data [To be retrieved from DB Table]
+
+2.Configuration File[XML or Annotations]:It holds Details of Java Class which is to be provided to Container or server or framework to identify as special code/component.
+
+	Eg : We Provide Java Bean Class Details in a Configuration File to Inform to Hibernate Class to treat the Bean Class as Entity Class and should be mapped with
+given DB Table
+
+Note : We don't need to provide SQL Queries while writing O-R Mapping Persistence Logic because ORM s/w like
+Hibernate Generates JDBC Code+SQL Queries
+dynamically at runtime for the Provided DB
+s/w.
+
+Hence we can use this persistence logic to which ever DB s/w we want, hence this persistence
+logic becomes Independent Persistence Logic.
+
+
+
