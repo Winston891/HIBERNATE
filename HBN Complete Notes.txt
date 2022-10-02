@@ -1,3 +1,5 @@
+(Session:1 to 5)
+
 1.Persistence :  The process of storing 
 and managing data for a long period of
 time is Persistence.
@@ -159,5 +161,93 @@ s/w.
 Hence we can use this persistence logic to which ever DB s/w we want, hence this persistence
 logic becomes Independent Persistence Logic.
 
+(Session- 6 to 10)
+
+In o-r mapping,the objects of Entity Class are Actors playing roles called
+
+	1.inserting record : Saving Data of object to DB Table record.
+	2.updating record : Updating Record of DB Table represented by an object.
+	3.deleting record : Deleting Record of DB Table represented by an object.
+	4.selecting/loading record : Retrieving record of DB Table represented by an
+			    object.
+
+FAQ : In O-R Mapping each record is represented by one Object.If DB
+      Table holds huge number of records then huge no.of.objects
+      will be created which may lead to system crash.How to do you 
+      justify this statement?
+
+Ans : 1.ORM s/w doesn't create objects for entity classes when records
+      are available in DB Table.
+      2.Entity class object gets created when records are selected.
+      3.Selecting Huge no.of.records from DB Table at a time is
+	programmer's mistake and not ORM s/w.
+      4.So while working with ORM s/ws we should retrieve records
+	of DB Table part by part
+
+FAQ : What are the Mismatches between java and RDBMS DB s/w?How are they resolved
+      by using ORM s/w?
+
+Ans : 
+	1.Java Entity Class can be in Inheritance Relationship but DB Table 
+	cannot be in Inheritance Relationship.
+
+	Solution : To Map Java Class with Inheritance Relationship to
+	one or more DB Tables we need "Special Inheritance" mapping.
+
+	2.Java Entity Class can be in Composition[Has-A Relationship]
+	but DB Tables cannot be in Composition.
+
+	Solution : To Map Java Class with Composition to
+	one or more DB Tables we need "Special Component" mapping.
+
+	3.Java Entity Class can be taken having List/Set/Map as Collection
+	Properties.DB Table do not support Collections.
+
+	Solution : To Map Java Class with Collections Properties to
+	one or more DB Tables we need "Special Collection"mapping.
+
+	4.DB Tables will be kept in Association using Foreign Key Columns.
+	Java Class can be kept in Relationship with the help of Composition and
+	Collections.
+
+	Solution : To Map Java Class Relationship with DB Table in Relationship
+	we need "Association Mapping".
+
+FAQ : Is JDBC Outdated? If it isn't then where we must use JDBC and where we must
+      use ORM Framework like Hibernate to develop Persistence Logics?
+
+Ans : JDBC is not Outdated.It is utilized internally in projects.All ORM Frameworks
+internally uses JDBC Code to Perform Persistence Operations.
+
+	If we want to perform persistence operations with large amount of 
+	Data to DB s/w at a time then prefer JDBC over ORM f/w because for
+	all records,JDBC creates only one ResultSet Object where as ORM s/w
+	creates object for each record which may crash the application
+
+	If we want to perform persistence operations with small amount of 
+	Data to DB s/w at a time then prefer ORM f/w over because less objects
+	will be created for less records in ORM s/w and also we can use features
+	like DB Portability,Caching,Versioning,Timestamping,Dynamic Schema Generation
+	,etc.. where as these features are unavailable in JDBC
+
+FAQ : What is a POJO Class?
+
+Ans : A Java Class which implements or extends only Predefined Libraries of Java
+      Programming Language and doesn't implement or extends Predefined Libraries of
+      Technology or Framework is known as POJO Class.
+     
+Note : 1.POJO Class are not against inheritance or implementing interfaces,they are
+	against extending and Implementing Technology/Framework API Specific Class and
+	Interface.
+
+	2.POJO Class can hold pre-defined methods/logics of technolgy and
+	framework.
+
+	3.Annotations can be provided for POJO Class
+
+	4.A Framework/Technology is said to be non-invasive only when its
+	class are POJO Class
+
+	
 
 
